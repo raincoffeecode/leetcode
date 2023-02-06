@@ -41,44 +41,9 @@ function findAnagrams(s: string, p: string): number[] {
     const validLength = validStart !== undefined ? i - validStart + 1 : 0
     const isValidAnagram = validLength === p.length
 
-    // console.log(
-    //   JSON.stringify(
-    //     {
-    //       i,
-    //       validChars,
-    //       isValid,
-    //       isSwap,
-    //       validStart,
-    //       validLength,
-    //       isValidAnagram,
-    //     },
-    //     null,
-    //     2
-    //   )
-    // )
-
     if (isValidAnagram) {
       anagramIndexes.push(validStart!)
     }
-
-    // if (isValid) {
-    //   validChars[c] -= 1
-    // }
-
-    // if (isValid && validStart === undefined) {
-    //   validStart = i
-    // }
-
-    // if (!isValid && !isSwap) {
-    //   if (validStart !== undefined) {
-    //     const old = validStart
-    //     for (let j = i - 1; j > validStart; j--) {
-    //       if (s[j] === )
-    //     }
-    //   }
-
-    //   validChars = { ...chars }
-    // }
   }
 
   return anagramIndexes
