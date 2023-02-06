@@ -35,18 +35,6 @@ function threeSum(nums: number[]): Array<[number, number, number]> {
     let k = len - 1
 
     while (j < k) {
-      // Skip duplicates on the left side.
-      // if (j > 0 && nums[j] === nums[j - 1]) {
-      //   j += 1
-      //   continue
-      // }
-
-      // // Skip duplicates on the right side.
-      // if (k < len - 1 && nums[k] === nums[k + 1]) {
-      //   k -= 1
-      //   continue
-      // }
-
       const sum = target + nums[j] + nums[k]
 
       if (sum < 0) {
