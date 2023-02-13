@@ -3,7 +3,6 @@ class Group {
   private static maxValidCharCode = "z".charCodeAt(0)
 
   readonly char: string
-  readonly charCode: number
   start?: number
   end?: number
 
@@ -19,7 +18,6 @@ class Group {
       throw new Error("Character must be lower-cased a-z.")
     }
     this.char = char
-    this.charCode = charCode - Group.minValidCharCode
     this.start = start
     this.end = end
   }
@@ -61,6 +59,7 @@ function distinctNames(ideas: string[]): number {
 
   let distinctNames = 0
 
+  // For each pairing of the groups, determine the number of unique pairings.
   for (let i = 0; i < nonEmptyGroups.length; i++) {
     for (let j = i + 1; j < nonEmptyGroups.length; j++) {
       const group1 = nonEmptyGroups[i]
