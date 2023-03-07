@@ -29,5 +29,9 @@ function isValid(s: string): boolean {
   return stack.length ? false : true
 }
 
-const testCases = ["()"]
-testCases.forEach((tc) => console.log(`\nInput: ${tc}\nOutput: ${isValid(tc)}`))
+;(() => {
+  const testCases = ["()"]
+  testCases.forEach((tc) =>
+    console.log(`\nInput: ${tc}\nOutput: ${isValid(tc)}`)
+  )
+})()

@@ -14,12 +14,16 @@ function lengthOfLastWord(s: string): number {
   return end === undefined ? 0 : end - start + 1
 }
 
-const testCases = [
-  "Hello World",
-  "   fly me   to   the moon  ",
-  "luffy is still joyboy",
-]
+;(() => {
+  const testCases = [
+    "Hello World",
+    "   fly me   to   the moon  ",
+    "luffy is still joyboy",
+  ]
 
-testCases.forEach((tc) =>
-  console.log(`\nInput: ${JSON.stringify(tc)}\nOutput: ${lengthOfLastWord(tc)}`)
-)
+  testCases.forEach((tc) =>
+    console.log(
+      `\nInput: ${JSON.stringify(tc)}\nOutput: ${lengthOfLastWord(tc)}`
+    )
+  )
+})()

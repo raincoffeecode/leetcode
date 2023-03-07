@@ -135,11 +135,13 @@ function maxArea(height: number[]): number {
   return maxArea
 }
 
-const testCases = [
-  [1, 8, 6, 2, 5, 4, 8, 3, 7],
-  // [1, 1],
-]
+;(() => {
+  const testCases = [
+    [1, 8, 6, 2, 5, 4, 8, 3, 7],
+    // [1, 1],
+  ]
 
-testCases.forEach((tc) =>
-  console.log(`\nInput: ${JSON.stringify(tc)}\nOutput: ${maxArea(tc)}`)
-)
+  testCases.forEach((tc) =>
+    console.log(`\nInput: ${JSON.stringify(tc)}\nOutput: ${maxArea(tc)}`)
+  )
+})()

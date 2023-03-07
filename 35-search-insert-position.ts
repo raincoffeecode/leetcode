@@ -28,17 +28,19 @@ function searchInsert(nums: number[], target: number): number {
   throw new Error("Unexpected error.")
 }
 
-const testCases: Array<[number[], number]> = [
-  [[1, 3, 5, 6], 5],
-  [[1, 3, 5, 6], 2],
-  [[1, 3, 5, 6], 7],
-]
+;(() => {
+  const testCases: Array<[number[], number]> = [
+    [[1, 3, 5, 6], 5],
+    [[1, 3, 5, 6], 2],
+    [[1, 3, 5, 6], 7],
+  ]
 
-testCases.forEach((tc, index) => {
-  const [nums, target] = tc
-  if (index > 0) {
-    console.log("")
-  }
-  const s = `Input: ${nums} ${target}\nOutput: ${searchInsert(...tc)}`
-  console.log(index === 0 ? s : `\n${s}`)
-})
+  testCases.forEach((tc, index) => {
+    const [nums, target] = tc
+    if (index > 0) {
+      console.log("")
+    }
+    const s = `Input: ${nums} ${target}\nOutput: ${searchInsert(...tc)}`
+    console.log(index === 0 ? s : `\n${s}`)
+  })
+})()

@@ -46,8 +46,10 @@ function intToRoman(num: number): string {
   return s
 }
 
-const testCases = [3, 58, 1994]
+;(() => {
+  const testCases = [3, 58, 1994]
 
-testCases.forEach((tc) =>
-  console.log(`\nInput: ${JSON.stringify(tc)}\nOutput: ${intToRoman(tc)}`)
-)
+  testCases.forEach((tc) =>
+    console.log(`\nInput: ${JSON.stringify(tc)}\nOutput: ${intToRoman(tc)}`)
+  )
+})()
