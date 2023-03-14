@@ -22,18 +22,18 @@ class Solution:
         heapify(nodes)
 
         while nodes:
-            n = heappop(nodes)
-            next = n.node.next
-            n.node.next = None
+            node = heappop(nodes).node
+            next = node.next
 
-            if not prev:
-                prev = n.node
-                head = n.node
-            else:
-                prev.next = n.node
-                prev = n.node
+            if prev:
+                prev.next = node
+            if not head:
+                head = node
 
             if next:
                 heappush(nodes, WrapperNode(next.val, next))
+
+            prev = node
+            prev.next = None
 
         return head
