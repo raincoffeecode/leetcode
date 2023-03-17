@@ -8,60 +8,41 @@ const CHAR_INDEX: { [index: string]: number } = "abcdefghijklmnopqrstuvwxyz"
   .reduce((acc, char, i) => ({ ...acc, [char]: i }), {})
 
 class Trie {
-  children: (TrieNode | undefined)[] = Array(26)
-
-  constructor() {}
+  root: TrieNode = new TrieNode()
 
   insert(word: string): void {
-    let { children } = this
-    for (let i = 0; i < word.length; i++) {
-      let char = word[i]
-      const charIndex = CHAR_INDEX[char]
-      const isLast = i === word.length - 1
-
-      if (children[charIndex] === undefined) {
-        children[charIndex] = new TrieNode()
+    let node = this.root
+    for (const char of word) {
+      const index = CHAR_INDEX[char]
+      if (!node.children[index]) {
+        node.children[index] = new TrieNode()
       }
-
-      if (isLast) {
-        children[charIndex]!.isTerminator = true
-      }
-
-      children = children[charIndex]!.children
+      node = node.children[index]!
     }
+    node.isTerminator = true
   }
 
   search(word: string): boolean {
-    let { children } = this
-    for (let i = 0; i < word.length; i++) {
-      let char = word[i]
-      const charIndex = CHAR_INDEX[char]
-      const isLast = i === word.length - 1
-
-      if (children[charIndex] === undefined) {
+    let node = this.root
+    for (const char of word) {
+      const index = CHAR_INDEX[char]
+      if (!node.children[index]) {
         return false
       }
-
-      if (isLast) {
-        return children[charIndex]!.isTerminator
-      }
-
-      children = children[charIndex]!.children
+      node = node.children[index]!
     }
-
-    throw new Error("Invalid input.")
+    return node.isTerminator
   }
 
   startsWith(prefix: string): boolean {
-    let { children } = this
+    let node = this.root
     for (const char of prefix) {
-      const charIndex = CHAR_INDEX[char]
-      if (children[charIndex] === undefined) {
+      const index = CHAR_INDEX[char]
+      if (!node.children[index]) {
         return false
       }
-      children = children[charIndex]!.children
+      node = node.children[index]!
     }
-
     return true
   }
 }
