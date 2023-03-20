@@ -1,6 +1,5 @@
 class WordDictionary {
   root: TrieNode = new TrieNode()
-  cache: { [index: string]: boolean } = {}
 
   addWord(word: string): void {
     let node = this.root
@@ -12,31 +11,31 @@ class WordDictionary {
       node = node.children[index]!
     }
     node.isTerminator = true
-    this.cache[word] = true
   }
 
   search(word: string): boolean {
-    if (this.cache[word]) {
-      return true
-    }
     let cursors = [this.root]
     for (const char of word) {
-      if (char === ".") {
-        cursors = cursors.reduce<TrieNode[]>((acc, cur) => {
-          const validNodes = cur.children.filter((c) => !!c) as TrieNode[]
-          return [...acc, ...validNodes]
-        }, [])
-      } else {
-        const index = CHAR_INDEX[char]
-        cursors = cursors
-          .map((cursor) => cursor.children[index])
-          .filter((cursor) => !!cursor) as TrieNode[]
+      if (!cursors.length) {
+        return false
       }
+      const nextCursors: TrieNode[] = []
+      for (const cursor of cursors) {
+        if (char === ".") {
+          for (const node of cursor.children) {
+            if (node) {
+              nextCursors.push(node)
+            }
+          }
+        } else {
+          const index = CHAR_INDEX[char]
+          if (cursor.children[index]) {
+            nextCursors.push(cursor.children[index]!)
+          }
+        }
+      }
+      cursors = nextCursors
     }
-    const isMatching = !!cursors.find((c) => c.isTerminator)
-    if (isMatching) {
-      this.cache[word] = true
-    }
-    return isMatching
+    return !!cursors.find((c) => c.isTerminator)
   }
 }
