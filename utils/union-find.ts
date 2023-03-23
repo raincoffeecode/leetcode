@@ -43,7 +43,7 @@ export default class UnionFind {
     return rootA === rootB
   }
 
-  private findRoot(index: number): number {
+  findRoot(index: number): number {
     const { roots } = this
     if (index === roots[index]) {
       return index
