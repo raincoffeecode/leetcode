@@ -5,7 +5,9 @@ class FoodRatings {
 
   changeRating(food: string, newRating: number): void {}
 
-  highestRated(cuisine: string): string {}
+  highestRated(cuisine: string): string {
+    return ""
+  }
 }
 
 /**
