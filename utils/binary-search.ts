@@ -48,3 +48,21 @@ function binarySearch<T>(items: T[], searchElement: T): number {
   // Element not found in the list.
   return -1
 }
+
+function binarySearchInsertIndex<T>(items: T[], searchElement: T): number {
+  let left = 0
+  let right = items.length - 1
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2)
+    if (items[mid] === searchElement) {
+      return mid
+    } else if (items[mid] < searchElement) {
+      left = mid + 1
+    } else {
+      right = mid - 1
+    }
+  }
+
+  return right + 1
+}
