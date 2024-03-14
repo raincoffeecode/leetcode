@@ -1,3 +1,4 @@
+// Complexety: O(n) time, O(n) space.
 function numSubarraysWithSum(nums: number[], goal: number): number {
   const freq = new Map<number, number>()
   let sum = 0
