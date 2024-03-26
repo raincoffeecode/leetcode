@@ -1,4 +1,4 @@
-import UnionFind from "./utils/union-find"
+import UnionFind from "../utils/union-find"
 
 function minScore(n: number, roads: number[][]): number {
   if (n < 2 || !roads.length) {

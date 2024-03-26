@@ -1,4 +1,4 @@
-import UnionFind from "./utils/union-find"
+import UnionFind from "../utils/union-find"
 
 function countPairs(n: number, edges: number[][]): number {
   const uf = new UnionFind(n)

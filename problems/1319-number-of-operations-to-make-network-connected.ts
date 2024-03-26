@@ -1,4 +1,4 @@
-import UnionFind from "./utils/union-find"
+import UnionFind from "../utils/union-find"
 
 function makeConnected(n: number, connections: number[][]): number {
   if (connections.length < n - 1) {
