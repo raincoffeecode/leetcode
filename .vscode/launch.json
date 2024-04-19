@@ -2,12 +2,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Debug Current File",
+      "name": "TypeScript: Debug Current File",
       "program": "${file}",
+      "request": "launch",
       "console": "integratedTerminal",
-      "preLaunchTask": "tsc: build - tsconfig.json"
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "type": "node"
+    },
+    {
+      "name": "Python: Debug Current File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
     }
   ]
 }
