@@ -22,6 +22,8 @@ function numDecodingsRecursive(s: string): number {
   if (value === 0 && s.at(1) === "0") {
     return 0
   }
+
+  return NaN
 }
 
 function numDecodings(s: string): number {
