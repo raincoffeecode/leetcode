@@ -1,7 +1,12 @@
+# Union Find i.e. Disjoint Set.
+# Optimized with union by rank and path compression.
+# Union by rank: Use height of sets to determine which to use as root. Use larger height
+# as root to minimize overall heights.
+# Path compression: Update intermediate nodes to all point to root for each `findRoot`
+# and `connected` call.
+# For this implementation, the total set size must be known at initilization but this
+# is not necessarily the true for all Union Find implemntations.
 # Based on https://leetcode.com/explore/learn/card/graph/618/disjoint-set/3843/
-# Optimized "disjoint set" with path compression and union by rank.
-# Path compression: update intermediate nodes to all point to root for each find.
-# Union by rank: use height of sets to determine which
 
 
 class UnionFind:
