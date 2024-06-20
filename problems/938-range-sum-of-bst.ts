@@ -12,7 +12,11 @@
  * }
  */
 
-function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
+function rangeSumBST1(
+  root: TreeNode | null,
+  low: number,
+  high: number
+): number {
   if (!root) {
     return 0
   }
@@ -26,4 +30,28 @@ function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
     val += rangeSumBST(root.right, low, high)
   }
   return val
+}
+
+function rangeSumBST(root: TreeNode | null, low: number, high: number): number {
+  let sum = 0
+  function traverse(node: TreeNode | null): void {
+    if (!node) {
+      return
+    }
+    const { val } = node
+    const inRange = val >= low && val <= high
+    const checkLeft = val > low
+    const checkRight = val < high
+    if (inRange) {
+      sum += val
+    }
+    if (checkLeft) {
+      traverse(node.left)
+    }
+    if (checkRight) {
+      traverse(node.right)
+    }
+  }
+  traverse(root)
+  return sum
 }
