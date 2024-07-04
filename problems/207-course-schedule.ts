@@ -1,48 +1,38 @@
 function canFinish(numCourses: number, prereqs: [number, number][]): boolean {
-  const blockedMap = new Map<number, Map<number, boolean>>(
-    Array.from({ length: numCourses }, (_, i) => [
-      i,
-      new Map<number, boolean>(),
-    ])
-  )
+  // The number of prereqs that still need to be completed before a course can be taken.
+  const openPrereqsCount = Array(numCourses).fill(0)
 
-  const unblocksMap = new Map<number, Map<number, boolean>>(
-    Array.from({ length: numCourses }, (_, i) => [
-      i,
-      new Map<number, boolean>(),
-    ])
+  // A mapping of a course to other courses that it serves as a prereq too.
+  const prereqsMap = new Map<number, number[]>(
+    Array.from({ length: numCourses }, (_, i) => [i, []])
   )
 
   for (const [course, prereq] of prereqs) {
-    blockedMap.get(course)!.set(prereq, true)
-    unblocksMap.get(prereq)!.set(course, true)
+    openPrereqsCount[course]++
+    prereqsMap.get(prereq)!.push(course)
   }
 
-  // Courses that can be taken.
   const unblocked: number[] = []
 
-  // Fill unblocked initially with courses that have no prereqs.
-  for (const [course, prereqs] of blockedMap) {
-    if (prereqs.size === 0) {
-      unblocked.push(course)
+  // Construct initial list of unblocked courses.
+  for (let i = 0; i < numCourses; i++) {
+    if (openPrereqsCount[i] === 0) {
+      unblocked.push(i)
     }
   }
 
   while (unblocked.length) {
     const course = unblocked.pop()!
-    for (const unblockedCourse of unblocksMap.get(course)!.keys()) {
-      blockedMap.get(unblockedCourse)!.delete(course)
-      if (blockedMap.get(unblockedCourse)!.size === 0) {
-        unblocked.push(unblockedCourse)
+    const unblocks = prereqsMap.get(course)!
+    for (const unblock of unblocks) {
+      openPrereqsCount[unblock]--
+      if (openPrereqsCount[unblock] === 0) {
+        unblocked.push(unblock)
       }
     }
   }
 
-  for (const prereqs of blockedMap.values()) {
-    if (prereqs.size > 0) {
-      return false
-    }
-  }
-
-  return true
+  return openPrereqsCount.every((count) => count === 0)
 }
+
+canFinish(2, [[1, 0]])
