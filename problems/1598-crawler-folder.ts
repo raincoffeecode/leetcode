@@ -1,3 +1,5 @@
+export {}
+
 function minOperations(logs: string[]): number {
   let depth = 0
   for (const log of logs) {
